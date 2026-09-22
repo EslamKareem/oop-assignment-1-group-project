@@ -13,4 +13,4 @@ int main() {
     invertImage (myPicture);
     myPicture.saveImage("luffy_inverted.jpg");
     return 0;
-}
+} 
