@@ -1,6 +1,8 @@
 # CS213 - Object-Oriented Programming: Assignment 1
-**Faculty of Computing and Artificial Intelligence (FCAI), Cairo University**[cite: 4]
-**Academic Year:** 2026-2027[cite: 4]
+
+**Faculty of Computing and Artificial Intelligence (FCAI), Cairo University**
+
+**Academic Year:** 2026-2027
 
 ## 👥 Team Members
 * Eslam karim (20250814)
