@@ -61,4 +61,3 @@ void addframe( Image&  img)
 
 
 }
-vkak
