@@ -61,3 +61,4 @@ void addframe( Image&  img)
 
 
 }
+this the new fix
