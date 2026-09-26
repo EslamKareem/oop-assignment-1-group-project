@@ -99,3 +99,36 @@ void addframe( Image&  img){
 	cout<<"frame added successfully\n";
 }
 
+void lightenImage(Image &image, int amount) {
+  double ratio = amount / 100.0;
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      for (int k = 0; k < 3; k++) {
+        int pixelValue = image.getPixel(i, j, k) * (1 + ratio);
+        if (pixelValue > 255) {
+          pixelValue = 255;
+        } else if (pixelValue < 0) {
+          pixelValue = 0;
+        }
+        image.setPixel(i, j, k, pixelValue);
+      }
+    }
+  }
+}
+
+void darkenImage(Image &image, int amount) {
+  double ratio = amount / 100.0;
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      for (int k = 0; k < 3; k++) {
+        int pixelValue = image.getPixel(i, j, k) * (1 - ratio);
+        if (pixelValue > 255) {
+          pixelValue = 255;
+        } else if (pixelValue < 0) {
+          pixelValue = 0;
+        }
+        image.setPixel(i, j, k, pixelValue);
+      }
+    }
+  }
+}

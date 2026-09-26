@@ -11,9 +11,25 @@ void ViewMenu() {
     cout << "4. Adding Frame" << endl;
     cout << "5. Flip" << endl;
     cout << "6. Rotate" << endl;
-    cout << "7. Brightness" << endl;
+    cout << "7. Lighten / Darken" << endl;
     cout << "8. Resize" << endl;
     cout << "9. Exit" << endl;
+}
+
+int BrightnessMenu() {
+     int choice;
+     cout << "Choose an option:\n";
+     cout << "1. Lighten the image\n";
+     cout << "2. Darken the image\n";
+     cin >> choice;
+
+     if (cin.fail()){
+        cin.clear(); 
+        cin.ignore(10000, '\n');
+        cout << "Invalid input. Please enter a number between 1 and 2." << endl;
+        cin >> choice;
+    }
+     return choice;
 }
 
 int getChoice() {
@@ -62,7 +78,24 @@ int main() {
                 cout << "You selected Filter 6." << endl;
                 break;
             case 7:
-                cout << "You selected Filter 7." << endl;
+                int brightnessChoice;
+                brightnessChoice = BrightnessMenu();
+                switch (brightnessChoice) {
+                    case 1:
+                        int lightenAmount;
+                        cout << "Enter the amount to lighten (0-100): ";
+                        cin >> lightenAmount;
+                        lightenImage(image, lightenAmount);
+                        break;
+                    case 2:
+                        int darkenAmount;
+                        cout << "Enter the amount to darken (0-100): ";
+                        cin >> darkenAmount;
+                        darkenImage(image, darkenAmount);
+                        break;
+                    default:
+                        cout << "Invalid choice. Please select 1 or 2." << endl;
+                }
                 break;
             case 8:
                 cout << "You selected Filter 8." << endl;
