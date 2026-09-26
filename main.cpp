@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Image_Class.h"
-#include "filter_4.cpp"
 using namespace std;
 
 void ViewMenu() {
@@ -13,22 +12,33 @@ void ViewMenu() {
     cout << "6. Rotate" << endl;
     cout << "7. Brightness" << endl;
     cout << "8. Resize" << endl;
-    cout << "9. Save and Exit" << endl;
-    cout << "10. Exit" << endl;
+    cout << "9. Exit" << endl;
+}
+
+int getChoice() {
+    int choice;
+    cin >> choice;
+    if (cin.fail()){
+        cin.clear(); 
+        cin.ignore(10000, '\n');
+        cout << "Invalid input. Please enter a number between 1 and 9." << endl;
+        cin >> choice;
+    }
+    return choice;
 }
 
 
 
 int main() {
-    int choice;
     string filename;
     cout << "Please enter the image filename: ";
     cin >> filename;
     Image image(filename);
-
+    
+    int choice;
     do{
         ViewMenu();
-        cin >> choice;
+        choice = getChoice();
 
         switch(choice) {
             case 1:
@@ -41,7 +51,7 @@ int main() {
                 cout << "You selected Filter 3." << endl;
                 break;
             case 4:
-                addframe(image);
+                cout << "You selected Filter 4." << endl;
                 break;
             case 5:
                 cout << "You selected Filter 5." << endl;
@@ -60,6 +70,14 @@ int main() {
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
+        }
+
+        if (choice >= 1 && choice <= 8) {
+            string outputFile;
+            cout << "Save result as: ";
+            cin >> outputFile;
+            image.saveImage(outputFile);
+            cout << "Saved to " << outputFile << endl;
         }
     } while(choice != 9);
 }
