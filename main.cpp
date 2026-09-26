@@ -1,4 +1,5 @@
 #include <iostream>
+#include "filters.cpp"
 #include "Image_Class.h"
 using namespace std;
 
@@ -31,27 +32,28 @@ int getChoice() {
 
 int main() {
     string filename;
-    cout << "Please enter the image filename: ";
-    cin >> filename;
-    Image image(filename);
     
     int choice;
     do{
         ViewMenu();
         choice = getChoice();
 
+        cout << "Please enter the image filename: ";
+        cin >> filename;
+        Image image(filename);
+
         switch(choice) {
             case 1:
-                cout << "You selected Filter 1." << endl;
+                applyfilterGrayscale(image);
                 break;
             case 2:
-                cout << "You selected Filter 2." << endl;
+                blackAndWhite(image);
                 break;
             case 3:
-                cout << "You selected Filter 3." << endl;
+                invertImage(image);
                 break;
             case 4:
-                cout << "You selected Filter 4." << endl;
+                addframe(image);
                 break;
             case 5:
                 cout << "You selected Filter 5." << endl;
