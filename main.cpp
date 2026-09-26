@@ -1,21 +1,33 @@
 #include <iostream>
+#include "Image_Class.h"
+#include "filter_4.cpp"
 using namespace std;
+
+void ViewMenu() {
+    cout << "Menu:" << endl;
+    cout << "1. Gray Scale" << endl;
+    cout << "2. Black and White" << endl;
+    cout << "3. Invert" << endl;
+    cout << "4. Adding Frame" << endl;
+    cout << "5. Flip" << endl;
+    cout << "6. Rotate" << endl;
+    cout << "7. Brightness" << endl;
+    cout << "8. Resize" << endl;
+    cout << "9. Save and Exit" << endl;
+    cout << "10. Exit" << endl;
+}
+
+
 
 int main() {
     int choice;
+    string filename;
+    cout << "Please enter the image filename: ";
+    cin >> filename;
+    Image image(filename);
 
     do{
-        cout << "Menu:" << endl;
-        cout << "1. Filter 1" << endl;
-        cout << "2. Filter 2" << endl;
-        cout << "3. Filter 3" << endl;
-        cout << "4. Filter 4" << endl;
-        cout << "5. Filter 5" << endl;
-        cout << "6. Filter 6" << endl;
-        cout << "7. Filter 7" << endl;
-        cout << "8. Filter 8" << endl;
-        cout << "9. Exit" << endl;
-        cout << "Enter your choice: ";
+        ViewMenu();
         cin >> choice;
 
         switch(choice) {
@@ -29,7 +41,7 @@ int main() {
                 cout << "You selected Filter 3." << endl;
                 break;
             case 4:
-                cout << "You selected Filter 4." << endl;
+                addframe(image);
                 break;
             case 5:
                 cout << "You selected Filter 5." << endl;
