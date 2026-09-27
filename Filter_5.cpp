@@ -19,10 +19,14 @@ void applyflip(Image &img) {
       }
     }
   } else if (choice ==
-             2) { // i love that it flip_worked first time so i just copy it add
-                  // the choise and chage the y value insted of x and just be as
-                  // lazy and as happy as possible (: lazyness + creativity =
-                  // happiness + greatness (Eslam)🦥
+             2) { // i love that flipping worked first time so i just copy it
+                  // add the choise and chage the y value insted of x and just
+                  // be as lazy and as happy as possible (: lazyness +
+                  // creativity = happiness + greatness (Eslam)🦥 i hate fixing
+                  // the code and i hate not sleeping to fix the code and i hate
+                  // when i have to do alot of search to find out why did the
+                  // code work or why didn`t it at 3:27 am i just want to sleep
+                  // like normal people why is it so hard?! 😭😭
     for (int _y = 0; _y < img.height / 2; _y++) {
       for (int _x = 0; _x < img.width; _x++) {
         for (int c = 0; c < 3; c++) {
