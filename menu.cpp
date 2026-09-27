@@ -73,7 +73,7 @@ int main() {
       Flip(image);
       break;
     case 6:
-      cout << "You selected Filter 6." << endl;
+      rotateImage(image);
       break;
     case 7:
       int brightnessChoice;
