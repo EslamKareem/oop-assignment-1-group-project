@@ -1,0 +1,230 @@
+#include "Image_Class.h"
+#include <iostream>
+using namespace std;
+
+void Grayscale(Image &img) {
+  for (int _y = 0; _y < img.height; _y++) {
+    for (int _x = 0; _x < img.width; _x++) {
+      unsigned char r = img.getPixel(_x, _y, 0);
+      unsigned char g = img.getPixel(_x, _y, 1);
+      unsigned char b = img.getPixel(_x, _y, 2);
+      int grayscale = static_cast<int>((0.299 * r) + (0.587 * g) + (0.114 * b));
+      // I could have used this "(pixel.r + pixel.g + pixel.b) / 3"
+      // but it will look ugly so i did a bit of research (used google search ai
+      // assistant while searching so i don`t waste a lot of time) and i found
+      // this
+      // "https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color"
+      // and i got an interasting forumla that makes it like the
+      // photoshop grayscale and it`s called Luminosity equation so it looks
+      // better now and more realistic (=
+      img.setPixel(_x, _y, 0, grayscale);
+      img.setPixel(_x, _y, 1, grayscale);
+      img.setPixel(_x, _y, 2, grayscale);
+    }
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void blackAndWhite(Image &image) {
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      unsigned int avg = 0;
+      for (int k = 0; k < 3; k++) {
+        avg += image(i, j, k);
+      }
+      avg /= 3;
+      if (avg >= 128) {
+        for (int k = 0; k < 3; k++) {
+          image(i, j, k) = 255;
+        }
+      } else {
+        for (int k = 0; k < 3; k++) {
+          image(i, j, k) = 0;
+        }
+      }
+    }
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void invertImage(Image &image) {
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      for (int k = 0; k < 3; k++) {
+        image.setPixel(i, j, k, 255 - image.getPixel(i, j, k));
+      }
+    }
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void addframe(Image &img) {
+  cout << "welcome to our application ";
+  int frameType;
+  cout << "Choose frame type:\n";
+  cout << "1. Simple frame || 2.Fancy frame\n";
+  cin >> frameType;
+
+  cout << " enter frame thickness and color \n ";
+  int frameWidth;
+  cin >> frameWidth;
+
+  int framecolorR, framecolorG, framecolorB;
+  cout << " enter frame color in R G B , each value should be between 0 and "
+          "255\n";
+  cin >> framecolorR >> framecolorG >> framecolorB;
+
+  int width = img.width;
+  int height = img.height;
+
+  for (int i = 0; i < height; ++i) {
+    for (int j = 0; j < width; ++j)
+      if (frameType == 1) {
+        if (i < frameWidth || i >= height - frameWidth || j < frameWidth ||
+            j >= width - frameWidth) {
+          img.setPixel(j, i, 0, framecolorR);
+          img.setPixel(j, i, 1, framecolorG);
+          img.setPixel(j, i, 2, framecolorB);
+        }
+      }
+
+      else if (frameType == 2) {
+        if (i < frameWidth || i >= height - frameWidth || j < frameWidth ||
+            j >= width - frameWidth) {
+          img.setPixel(j, i, 0, framecolorR);
+          img.setPixel(j, i, 1, framecolorG);
+          img.setPixel(j, i, 2, framecolorB);
+        }
+      }
+  }
+
+  cout << "frame added successfully\n";
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void lightenImage(Image &image, int amount) {
+  double ratio = amount / 100.0;
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      for (int k = 0; k < 3; k++) {
+        int pixelValue = image.getPixel(i, j, k) * (1 + ratio);
+        if (pixelValue > 255) {
+          pixelValue = 255;
+        } else if (pixelValue < 0) {
+          pixelValue = 0;
+        }
+        image.setPixel(i, j, k, pixelValue);
+      }
+    }
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void darkenImage(Image &image, int amount) {
+  double ratio = amount / 100.0;
+  for (int i = 0; i < image.width; i++) {
+    for (int j = 0; j < image.height; j++) {
+      for (int k = 0; k < 3; k++) {
+        int pixelValue = image.getPixel(i, j, k) * (1 - ratio);
+        if (pixelValue > 255) {
+          pixelValue = 255;
+        } else if (pixelValue < 0) {
+          pixelValue = 0;
+        }
+        image.setPixel(i, j, k, pixelValue);
+      }
+    }
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+void Flip(Image &img) {
+  int choice;
+  cout << "1. Vertical flip, 2. Horizontal flip_" << endl;
+  cin >> choice;
+
+  if (choice == 1) {
+    for (int _x = 0; _x < img.width / 2; _x++) {
+      for (int _y = 0; _y < img.height; _y++) {
+        for (int c = 0; c < 3; c++) {
+          unsigned char color = img.getPixel(_x, _y, c);
+          img.setPixel(_x, _y, c, img.getPixel(img.width - _x - 1, _y, c));
+          img.setPixel(img.width - _x - 1, _y, c,
+                       color); // funy how math can make my life both easier and
+                               // harder at the same time ¯\_(ツ)_/¯
+        }
+      }
+    }
+  } else if (choice ==
+             2) { // i love that flipping worked first time so i just copy it
+                  // add the choise and chage the y value insted of x and just
+                  // be as lazy and as happy as possible (: lazyness +
+                  // creativity = happiness + greatness (Eslam)🦥 i hate fixing
+                  // the code and i hate not sleeping to fix the code and i hate
+                  // when i have to do alot of search to find out why did the
+                  // code work or why didn`t it at 3:27 am i just want to sleep
+                  // like normal people why is it so hard?! 😭😭
+    for (int _y = 0; _y < img.height / 2; _y++) {
+      for (int _x = 0; _x < img.width; _x++) {
+        for (int c = 0; c < 3; c++) {
+          unsigned char color = img.getPixel(_x, _y, c);
+          img.setPixel(_x, _y, c, img.getPixel(_x, img.height - _y - 1, c));
+          img.setPixel(_x, img.height - _y - 1, c, color);
+        }
+      }
+    }
+  } else {
+    cout << "Bruh🥀" << endl;
+  }
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+Image rotateImage(Image &img) {
+    int choice;
+    cout << "1. Rotate 90 2. Rotate 270 3. Rotate 180" << endl;
+    cin >> choice;
+
+    if (choice == 1) {
+        Image rotated_image(img.height, img.width);
+
+        for (int i = 0; i < img.width; i++) {
+            for (int j = 0; j < img.height; j++) {
+                for (int k = 0; k < 3; k++) {
+                    rotated_image.setPixel(img.height - 1 - j, i, k, img.getPixel(i, j, k));
+                }
+            }
+        }
+        img = rotated_image;
+    }
+
+    else if (choice == 2) {
+        Image rotated_image(img.height, img.width);
+
+        for (int i = 0; i < img.width; i++) {
+            for (int j = 0; j < img.height; j++) {
+                for (int k = 0; k < 3; k++) {
+                    rotated_image.setPixel(j, img.width - 1 - i, k, img.getPixel(i, j, k));
+                }
+            }
+        }
+        img = rotated_image;
+    }
+
+    else if (choice == 3){
+        for (int i= 0; i < img.width / 2; i++) {
+          for (int j = 0; j < img.height; j++) {
+            for (int k = 0; k < 3; k++) {
+              unsigned char color = img.getPixel(i, j, k);
+              img.setPixel(i, j, k, img.getPixel(img.width - i - 1, j, k));
+              img.setPixel(img.width - i - 1, j, k, color); 
+            }
+          }
+        }
+        for (int j = 0; j < img.height / 2; j++) {
+          for (int i = 0; i < img.width; i++) {
+            for (int k = 0; k < 3; k++) {
+              unsigned char color = img.getPixel(i, j, k);
+              img.setPixel(i, j, k, img.getPixel(i, img.height - j - 1, k));
+              img.setPixel(i, img.height - j - 1, k, color);
+            }
+          }
+        }
+    }
+    else {
+        cout << "Invalid choice.Try again." << endl;
+    }
+      return img;
+}

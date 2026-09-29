@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-  Image image("luffy.jpg");
+void blackAndWhite(Image& image) {
   for (int i = 0; i < image.width; i++) {
     for (int j = 0; j < image.height; j++) {
       unsigned int avg = 0;
@@ -22,5 +21,5 @@ int main() {
       }
     }
   }
-  image.saveImage("luffy2.jpg");
+  
 }
