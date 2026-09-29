@@ -3,7 +3,7 @@
 // Eslam Karim shawky - 20250814 - Filters 1,5
 // Omar Yaser Sherif - 20250854 - Filters 2,6
 // Mohammed kamal Gherbawi - 20253019 - Filters 3,7
-// karem adel madi - 20253029 - Filters 4,8
+// Kareem adel madi - 20253029 - Filters 4,8
 // Sec 31,32
 
 #include "Image_Class.h"
@@ -66,7 +66,7 @@ void invertImage(Image &image) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// karem adel madi - 20253029 - Filter 4 add frame
+// Kareem adel madi - 20253029 - Filter 4 add frame
 void addframe(Image &img) {
   cout << "welcome to our application ";
   int frameType;
@@ -245,7 +245,7 @@ void darkenImage(Image &image, int amount) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// karem adel madi - 20253029 - Filter 8 Resizing Image
+// Kareem adel madi - 20253029 - Filter 8 resize image
 void resizeImage(Image &img) {
 
   int newHeight, newWidth;
