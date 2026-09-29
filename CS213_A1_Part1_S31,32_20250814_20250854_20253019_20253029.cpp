@@ -2,7 +2,7 @@
 // Eslam Karim shawky - 20250814 - Filters 1,5
 // Omar Yaser Sherif - 20250854 - Filters 2,6
 // Mohammed kamal Gherbawi - 20253019 - Filters 3,7
-// karim adel - 20253029 - Filters 4,8
+// karem adel madi - 20253029 - Filters 4,8
 // Sec 31,32
 
 #include "Image_Class.h"
@@ -65,7 +65,7 @@ void invertImage(Image &image) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// karim adel - 20253029 - Filter 4 add frame
+// karem adel madi - 20253029 - Filter 4 add frame
 void addframe(Image &img) {
   cout << "welcome to our application ";
   int frameType;
@@ -298,6 +298,11 @@ int main() {
     ViewMenu();
     choice = getChoice();
 
+    if (choice == 9) {
+      cout << "Exiting the program." << endl;
+      break;
+    }
+
     cout << "Please enter the image filename: ";
     cin >> filename;
     Image image(filename);
@@ -344,9 +349,6 @@ int main() {
     case 8:
       cout << "You selected Filter 8." << endl;
       break;
-    case 9:
-      cout << "Exiting the program." << endl;
-      break;
     default:
       cout << "Invalid choice. Please try again." << endl;
     }
@@ -359,5 +361,4 @@ int main() {
       cout << "Saved to " << outputFile << endl;
     }
   } while (choice != 9);
-  return 0;
 }
