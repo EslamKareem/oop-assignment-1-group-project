@@ -1,3 +1,4 @@
+// Assignment 1 Part 1
 // those filters ware made by:
 // Eslam Karim shawky - 20250814 - Filters 1,5
 // Omar Yaser Sherif - 20250854 - Filters 2,6
@@ -245,9 +246,10 @@ void darkenImage(Image &image, int amount) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Karim Adel - 20253029 - Filter 8 Resizing Image
+
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 
-// The menu
+// **The menu**
 
 void ViewMenu() {
   cout << "Menu:" << endl;
