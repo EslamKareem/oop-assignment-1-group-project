@@ -22,3 +22,16 @@ you can use whatever we did just a mention will be enough as long as you are a n
 ⚠️ if a company please note that:
 you can ask us and mention us if you don`t want to mention us you can contact us via email to see our response
 thanks for reading this and have a great day. 🕊️
+
+## ▶️ How to run the program
+
+1. Open a terminal in the project folder.
+2. Run:
+   `g++ main.cpp -o app.exe`
+   or simply double-click `run.bat`.
+3. When the program asks for the image filename, enter one of the available files in the folder, such as:
+   - `luffy.jpg`
+   - `FellAsleep.jpg`
+4. Choose a menu option and enter a name for the output file when asked.
+
+> The app does not automatically open an image. It waits for an image path at runtime.
