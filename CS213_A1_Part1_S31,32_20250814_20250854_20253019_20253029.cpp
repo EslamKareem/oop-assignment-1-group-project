@@ -359,4 +359,5 @@ int main() {
       cout << "Saved to " << outputFile << endl;
     }
   } while (choice != 9);
+  return 0;
 }
