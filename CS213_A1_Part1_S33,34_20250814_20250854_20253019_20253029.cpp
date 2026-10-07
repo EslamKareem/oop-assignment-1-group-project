@@ -589,43 +589,36 @@ Image scanline(Image &img) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Mohammed Kamal Gherbawi - 20253019 - Filter 15 purple color
-int purple() {
-  Image image("luffy.jpg");
+void purpleImage(Image &img) {
+  for (int i = 0; i < img.width; i++) {
+    for (int j = 0; j < img.height; j++) {
+      int r = img(i, j, 0) * 1.2;
+      int g = img(i, j, 1) * 0.7;
+      int b = img(i, j, 2) * 1.3;
 
-  for (int i = 0; i < image.width; i++) {
-    for (int j = 0; j < image.height; j++) {
-      int r = image(i, j, 0) * 1.2;
-      int g = image(i, j, 1) * 0.7;
-      int b = image(i, j, 2) * 1.3;
-
-      image(i, j, 0) = min(255, r);
-      image(i, j, 1) = min(255, g);
-      image(i, j, 2) = min(255, b);
+      img(i, j, 0) = max(0, min(255, r));
+      img(i, j, 1) = max(0, min(255, g));
+      img(i, j, 2) = max(0, min(255, b));
     }
   }
-  image.saveImage("luffy purple.jpg");
-  return 0;
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Kareem adel madi - 20253029 - Filter 16 infrared
-int infrared() {
-  Image image("Nar.jpg");
-  for (int i = 0; i < image.width; i++) {
-    for (int j = 0; j < image.height; j++) {
-      int r = image(i, j, 0);
-      int g = image(i, j, 1);
-      int b = image(i, j, 2);
+void infraredImage(Image &img) {
+  for (int i = 0; i < img.width; i++) {
+    for (int j = 0; j < img.height; j++) {
+      int r = img(i, j, 0);
+      int g = img(i, j, 1);
+      int b = img(i, j, 2);
 
       int ir = g * 1.2 + r * 0.3 - b * 0.2;
       ir = max(0, min(255, ir));
 
-      image(i, j, 0) = 255;
-      image(i, j, 1) = ir;
-      image(i, j, 2) = ir;
+      img(i, j, 0) = 255;
+      img(i, j, 1) = ir;
+      img(i, j, 2) = ir;
     }
   }
-  image.saveImage("Nar red.jpg");
-  return 0;
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // bonos filters
@@ -647,7 +640,13 @@ Image skew(Image &img, int factor) {
   }
   return image;
 }
-//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+
+void skewingImage(Image &img) {
+  int factor;
+  cout << "Enter skew angle: ";
+  cin >> factor;
+  img = skew(img, factor);
+}
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 
 // **The menu**
@@ -662,7 +661,16 @@ void ViewMenu() {
   cout << "6. Rotate" << endl;
   cout << "7. Lighten / Darken" << endl;
   cout << "8. Resize" << endl;
-  cout << "9. Exit" << endl;
+  cout << "9. Merge" << endl;
+  cout << "10. edge detection" << endl;
+  cout << "11. crop" << endl;
+  cout << "12. blur" << endl;
+  cout << "13. wano fixed light" << endl;
+  cout << "14. tint" << endl;
+  cout << "15. purple" << endl;
+  cout << "16. infrared" << endl;
+  cout << "17. Skewing" << endl;
+  cout << "19. Exit" << endl;
 }
 
 int BrightnessMenu() {
@@ -701,7 +709,7 @@ int main() {
     ViewMenu();
     choice = getChoice();
 
-    if (choice == 9) {
+    if (choice == 19) {
       cout << "Exiting the program." << endl;
       break;
     }
@@ -752,16 +760,44 @@ int main() {
     case 8:
       resizeImage(image);
       break;
+    case 9:
+      MergeImage(image);
+      break;
+    case 10:
+      edgeImage(image);
+      break;
+    case 11:
+      cropImage(image);
+      break;
+    case 12:
+      blurImage(image);
+      break;
+    case 13:
+      wanofixedlight(image);
+      break;
+    case 14:
+      tint(image);
+      break;
+    case 15:
+      purpleImage(image);
+      break;
+    case 16:
+      infraredImage(image);
+      break;
+    case 17:
+      skewingImage(image);
+      break;
     default:
       cout << "Invalid choice. Please try again." << endl;
+      break;
     }
 
-    if (choice >= 1 && choice <= 8) {
+    if (choice >= 1 && choice <= 17 && choice != 19) {
       string outputFile;
       cout << "Save result as: ";
       cin >> outputFile;
       image.saveImage(outputFile);
       cout << "Saved to " << outputFile << endl;
     }
-  } while (choice != 9);
+  } while (choice != 19);
 }
