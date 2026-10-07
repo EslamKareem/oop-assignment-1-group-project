@@ -621,7 +621,7 @@ void infraredImage(Image &img) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// bonos filters
+// bonos filters omar yasser sherif 20250854.
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
 
