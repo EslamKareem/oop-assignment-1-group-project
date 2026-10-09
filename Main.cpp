@@ -359,8 +359,16 @@ matrices columns(Image &img, int x, int y) {
   return m;
 }
 
-Image blurImage(Image &img) {
+Image blur(Image &img) {
   Image image(img.width, img.height);
+
+  for(int y = 0; y < img.height; y++){
+    for(int x = 0; x < img.width; x++){
+      for(int c = 0; c < 3; c++){
+        image.setPixel(x, y, c, 0);
+      }
+    }
+  }
 
   for (int y = 1; y < img.height - 1; y++) {
     for (int x = 1; x < img.width - 1; x++) {
@@ -380,8 +388,17 @@ Image blurImage(Image &img) {
   return image;
 }
 
-Image edgeImage(Image &img) {
+Image edge(Image &img) {
   Image image(img.width, img.height);
+
+  for(int y = 0; y < img.height; y++){
+    for(int x = 0; x < img.width; x++){
+      for(int c = 0; c < 3; c++){
+        image.setPixel(x, y, c, 255);
+      }
+    }
+  }
+
 
   for (int y = 1; y < img.height - 1; y++) {
     for (int x = 1; x < img.width - 1; x++) {
@@ -403,7 +420,7 @@ Image edgeImage(Image &img) {
       double gradientMagnitude =
           sqrt(double((horizontal * horizontal) + (vertical * vertical)));
 
-      double edgeThreshold = 200;
+      double edgeThreshold = 50;
       unsigned char edgeValue = gradientMagnitude > edgeThreshold ? 0 : 255;
 
       for (int c = 0; c < 3; c++) {
@@ -415,10 +432,10 @@ Image edgeImage(Image &img) {
   return image;
 }
 
-Image blurThenEdge(Image &img) {
-  Image blurred = blurImage(img);
-  Image edged = edgeImage(blurred);
-  return edged;
+void blurThenEdge(Image &img) {
+  Image blurred = blur(img);
+  Image edged = edge(blurred);
+  img = edged;
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Mohammed Kamal Gherbawi - 20253019 - Filter 11 crop image
@@ -463,7 +480,7 @@ void cropImage(Image &image) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Kareem adel madi - 20253029 - Filter 12 blur image
-void blurImage(Image &img, int radius) {
+ void blur(Image &img, int radius) {
   int Width = img.width;
   int Height = img.height;
 
@@ -494,6 +511,14 @@ void blurImage(Image &img, int radius) {
     }
   }
 }
+
+void blurImage(Image& img){
+  int r;
+  cout << "enter the radius : ";
+  cin >> r;
+  blur(img , r);
+}
+
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Eslam Karim shawky - 20250814 - Filter 13  better sun light
 
@@ -587,6 +612,13 @@ Image scanline(Image &img) {
   }
   return image;
 }
+
+void oldTV(Image& img){
+  srand(time(NULL));
+  img = tint(img);
+  img = noise(img);
+  img = scanline(img);
+}
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Mohammed Kamal Gherbawi - 20253019 - Filter 15 purple color
 void purpleImage(Image &img) {
@@ -625,6 +657,14 @@ void infraredImage(Image &img) {
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
 
+  for(int y = 0; y < img.height; y++){
+    for(int x = 0; x < img.width; x++){
+      for(int c = 0; c < 3; c++){
+        image.setPixel(x, y, c, 0);
+      }
+    }
+  }
+
   for (int y = 1; y < img.height - 1; y++) {
     double angle = factor * M_PI / 180.0;
     int MaxShift = (int)((img.height - 1) * tan(angle));
@@ -643,7 +683,7 @@ Image skew(Image &img, int factor) {
 
 void skewingImage(Image &img) {
   int factor;
-  cout << "Enter skew angle: ";
+  cout << "Enter skew angle (0 - 90): ";
   cin >> factor;
   img = skew(img, factor);
 }
@@ -666,7 +706,7 @@ void ViewMenu() {
   cout << "11. crop" << endl;
   cout << "12. blur" << endl;
   cout << "13. wano fixed light" << endl;
-  cout << "14. tint" << endl;
+  cout << "14. oldTV" << endl;
   cout << "15. purple" << endl;
   cout << "16. infrared" << endl;
   cout << "17. Skewing" << endl;
@@ -764,7 +804,7 @@ int main() {
       MergeImage(image);
       break;
     case 10:
-      edgeImage(image);
+      blurThenEdge(image);
       break;
     case 11:
       cropImage(image);
@@ -776,7 +816,7 @@ int main() {
       wanofixedlight(image);
       break;
     case 14:
-      tint(image);
+      oldTV(image);
       break;
     case 15:
       purpleImage(image);
