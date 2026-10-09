@@ -362,9 +362,9 @@ matrices columns(Image &img, int x, int y) {
 Image blur(Image &img) {
   Image image(img.width, img.height);
 
-  for(int y = 0; y < img.height; y++){
-    for(int x = 0; x < img.width; x++){
-      for(int c = 0; c < 3; c++){
+  for (int y = 0; y < img.height; y++) {
+    for (int x = 0; x < img.width; x++) {
+      for (int c = 0; c < 3; c++) {
         image.setPixel(x, y, c, 0);
       }
     }
@@ -391,14 +391,13 @@ Image blur(Image &img) {
 Image edge(Image &img) {
   Image image(img.width, img.height);
 
-  for(int y = 0; y < img.height; y++){
-    for(int x = 0; x < img.width; x++){
-      for(int c = 0; c < 3; c++){
+  for (int y = 0; y < img.height; y++) {
+    for (int x = 0; x < img.width; x++) {
+      for (int c = 0; c < 3; c++) {
         image.setPixel(x, y, c, 255);
       }
     }
   }
-
 
   for (int y = 1; y < img.height - 1; y++) {
     for (int x = 1; x < img.width - 1; x++) {
@@ -480,7 +479,7 @@ void cropImage(Image &image) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // Kareem adel madi - 20253029 - Filter 12 blur image
- void blur(Image &img, int radius) {
+void blur(Image &img, int radius) {
   int Width = img.width;
   int Height = img.height;
 
@@ -512,11 +511,11 @@ void cropImage(Image &image) {
   }
 }
 
-void blurImage(Image& img){
+void blurImage(Image &img) {
   int r;
   cout << "enter the radius : ";
   cin >> r;
-  blur(img , r);
+  blur(img, r);
 }
 
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
@@ -613,7 +612,7 @@ Image scanline(Image &img) {
   return image;
 }
 
-void oldTV(Image& img){
+void oldTV(Image &img) {
   srand(time(NULL));
   img = tint(img);
   img = noise(img);
@@ -653,13 +652,13 @@ void infraredImage(Image &img) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// bonos filters omar yasser sherif 20250854.
+// bonos filters omar yasser sherif 20250854 + kareem adel madi 20253029
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
 
-  for(int y = 0; y < img.height; y++){
-    for(int x = 0; x < img.width; x++){
-      for(int c = 0; c < 3; c++){
+  for (int y = 0; y < img.height; y++) {
+    for (int x = 0; x < img.width; x++) {
+      for (int c = 0; c < 3; c++) {
         image.setPixel(x, y, c, 0);
       }
     }
@@ -688,7 +687,54 @@ void skewingImage(Image &img) {
   img = skew(img, factor);
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
+// bonus Filter 2 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
 
+int gray2(Image &img, int x, int y) {
+  int r = img.getPixel(x, y, 0);
+  int g = img.getPixel(x, y, 1);
+  int b = img.getPixel(x, y, 2);
+  return (r + g + b) / 3;
+}
+
+Image oilPainting(Image &img, int levels) {
+  Image image(img.width, img.height);
+  int r = 4;
+
+  for (int y = r; y < img.height - r; y++) {
+    for (int x = r; x < img.width - r; x++) {
+      int count[16] = {0};
+      for (int dy = -r; dy <= r; dy++) {
+        for (int dx = -r; dx <= r; dx++) {
+          int g = gray2(img, x + dx, y + dy);
+          int level = g * levels / 256;
+          count[level]++;
+        }
+      }
+      int best = 0;
+      for (int l = 1; l < levels; l++) {
+        if (count[l] > count[best])
+          best = l;
+      }
+      int sr = 0, sg = 0, sb = 0, n = 0;
+      for (int dy = -r; dy <= r; dy++) {
+        for (int dx = -r; dx <= r; dx++) {
+          int g = gray2(img, x + dx, y + dy);
+          if (g * levels / 256 == best) {
+            sr += img.getPixel(x + dx, y + dy, 0);
+            sg += img.getPixel(x + dx, y + dy, 1);
+            sb += img.getPixel(x + dx, y + dy, 2);
+            n++;
+          }
+        }
+      }
+      image.setPixel(x, y, 0, sr / n);
+      image.setPixel(x, y, 1, sg / n);
+      image.setPixel(x, y, 2, sb / n);
+    }
+  }
+  return image;
+}
+//***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // **The menu**
 
 void ViewMenu() {
@@ -710,6 +756,7 @@ void ViewMenu() {
   cout << "15. purple" << endl;
   cout << "16. infrared" << endl;
   cout << "17. Skewing" << endl;
+  cout << "18. Oil Painting" << endl;
   cout << "19. Exit" << endl;
 }
 
@@ -827,8 +874,11 @@ int main() {
     case 17:
       skewingImage(image);
       break;
-    default:
-      cout << "Invalid choice. Please try again." << endl;
+    case 18:
+      int levels;
+      cout << "Enter the number of levels (2-16): ";
+      cin >> levels;
+      image = oilPainting(image, levels);
       break;
     }
 
