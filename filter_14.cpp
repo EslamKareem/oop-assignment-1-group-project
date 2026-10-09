@@ -52,20 +52,20 @@ Image scanline(Image& img){
   return image;
 }
 
-
+Image oldTV(Image& img){
+  srand(time(NULL));
+  Image tinted = tint(img);
+  Image noised = noise(tinted);
+  Image oldTV= scanline(noised);
+  return oldTV;
+}
 
 
 int main() {
   srand(time(NULL));
   Image img("luffy.jpg");
 
-  Image image = tint(img);
-  image.saveImage("luffy_tint.jpg");
-
-  Image image2 = noise(image);
-  image2.saveImage("luffy_noice.jpg");
-
-  Image image3 = scanline(image2);
-  image3.saveImage("luffy_sacnline.jpg");
+  Image image = oldTV(img);
+  image.saveImage("luffy_oldTV.jpg");
 
 }
