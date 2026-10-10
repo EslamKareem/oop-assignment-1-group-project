@@ -882,7 +882,7 @@ int main() {
       break;
     }
 
-    if (choice >= 1 && choice <= 17 && choice != 19) {
+    if (choice >= 1 && choice <= 18 && choice != 19) {
       string outputFile;
       cout << "Save result as: ";
       cin >> outputFile;
