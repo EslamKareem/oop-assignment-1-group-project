@@ -6,7 +6,7 @@
 // Eslam Karim shawky - 20250814 - Filters 1,5,9,13 + (17,18)
 // Omar Yaser Sherif - 20250854 - Filters 2,6,10,14 + (17,18)
 // Mohammed kamal Gherbawi - 20253019 - Filters 3,7,11,15 + (17,18)
-// Kareem adel madi - 20253029 - Filters 4,8,12,16
+// Kareem adel madi - 20253029 - Filters 4,8,12,16 + (17,18)
 // shared documentation file:
 // https://docs.google.com/document/d/1I7dqut-mA1jn9h07poQ4i_6RbxGpSwVXTLWfjL1RpWc/edit?usp=sharing
 // the file contains the video link and the github Repo link ↑↑
@@ -661,7 +661,7 @@ void infraredImage(Image &img) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // bonos filter 1 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
-// + Omar Yasser Sherif 20250854
+// + Omar Yasser Sherif 20250854 + Kareem adel madi - 20253029
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
 
@@ -697,7 +697,7 @@ void skewingImage(Image &img) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // bonus Filter 2 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
-// + Omar Yasser Sherif 20250854
+// + Omar Yasser Sherif 20250854 + Kareem adel madi 20253029
 
 int gray2(Image &img, int x, int y) {
   int r = img.getPixel(x, y, 0);
