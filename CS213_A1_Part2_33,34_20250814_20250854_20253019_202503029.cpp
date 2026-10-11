@@ -1,9 +1,12 @@
+// Faculty of Computing and Artificial Intelligence (FCAI), Cairo University
+// CS213 - Object-Oriented Programming
+// Academic Year: 2026-2027
 // Assignment 1 Part 2 - Instructor: Dr.Mohamed El-Ramely - Sec 33,34
 // those filters ware made by:
-// Eslam Karim shawky - 20250814 - Filters 1,5
-// Omar Yaser Sherif - 20250854 - Filters 2,6
-// Mohammed kamal Gherbawi - 20253019 - Filters 3,7
-// Kareem adel madi - 20253029 - Filters 4,8
+// Eslam Karim shawky - 20250814 - Filters 1,5,9,13 + (17,18)
+// Omar Yaser Sherif - 20250854 - Filters 2,6,10,14 + (17,18)
+// Mohammed kamal Gherbawi - 20253019 - Filters 3,7,11,15 + (17,18)
+// Kareem adel madi - 20253029 - Filters 4,8,12,16
 // shared documentation file:
 // https://docs.google.com/document/d/1I7dqut-mA1jn9h07poQ4i_6RbxGpSwVXTLWfjL1RpWc/edit?usp=sharing
 // the file contains the video link and the github Repo link ↑↑
