@@ -3,7 +3,7 @@
 // Academic Year: 2026-2027
 // Assignment 1 Part 2 - Instructor: Dr.Mohamed El-Ramely - Sec 33,34
 // those filters ware made by:
-// Eslam Karim shawky - 20250814 - Filters 1,5,9,13 + (17,18)
+// Islam Karim shawky - 20250814 - Filters 1,5,9,13 + (17,18)
 // Omar Yaser Sherif - 20250854 - Filters 2,6,10,14 + (17,18)
 // Mohammed kamal Gherbawi - 20253019 - Filters 3,7,11,15 + (17,18)
 // Kareem adel madi - 20253029 - Filters 4,8,12,16 + (17,18)
@@ -19,7 +19,7 @@
 #include <iostream>
 using namespace std;
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// Eslam Karim shawky - 20250814 - Filter 1 Grayscale
+// Islam Karim shawky - 20250814 - Filter 1 Grayscale
 void Grayscale(Image &img) {
   for (int y = 0; y < img.height; y++) {
     for (int x = 0; x < img.width; x++) {
@@ -119,7 +119,7 @@ void addframe(Image &img) {
   cout << "frame added successfully\n";
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// Eslam Karim shawky - 20250814 - Filter 5 flip
+// Islam Karim shawky - 20250814 - Filter 5 flip
 void Flip(Image &img) {
   int choice;
   cout << "1. Vertical flip, 2. Horizontal flip_" << endl;
@@ -293,7 +293,7 @@ void resizeImage(Image &img) {
   img = newImage;
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// Eslam Karim shawky - 20250814 - Filter 9 Merge
+// Islam Karim shawky - 20250814 - Filter 9 Merge
 void MergeImage(Image &img_1) {
   Image img_2;
   string filename_2;
@@ -527,7 +527,7 @@ void blurImage(Image &img) {
 }
 
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// Eslam Karim shawky - 20250814 - Filter 13  better sun light
+// Islam Karim shawky - 20250814 - Filter 13  better sun light
 
 // sooo probaly youll notice that there is a a bit ((alot)) of simlarity between
 // this and my grayscale filter, soo it`s probably because i just copied it and
@@ -660,7 +660,7 @@ void infraredImage(Image &img) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// bonos filter 1 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
+// bonos filter 1 Islam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
 // + Omar Yasser Sherif 20250854 + Kareem adel madi - 20253029
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
@@ -696,7 +696,7 @@ void skewingImage(Image &img) {
   img = skew(img, factor);
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// bonus Filter 2 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
+// bonus Filter 2 Islam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
 // + Omar Yasser Sherif 20250854 + Kareem adel madi 20253029
 
 int gray2(Image &img, int x, int y) {
