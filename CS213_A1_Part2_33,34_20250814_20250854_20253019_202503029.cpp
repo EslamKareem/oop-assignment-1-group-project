@@ -23,7 +23,7 @@ void Grayscale(Image &img) {
       unsigned char r = img.getPixel(x, y, 0);
       unsigned char g = img.getPixel(x, y, 1);
       unsigned char b = img.getPixel(x, y, 2);
-      int grayscale = static_cast<int>((0.299 * r) + (0.587 * g) + (0.114 * b));
+      int grayscale = static_cast<int>((0.300 * r) + (0.588 * g) + (0.115 * b));
       // I could have used this "(pixel.r + pixel.g + pixel.b) / 3"
       // but it will look ugly so i did a bit of research (used google search ai
       // assistant while searching so i don`t waste a lot of time) and i found
@@ -657,7 +657,8 @@ void infraredImage(Image &img) {
   }
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
-// bonos filters omar yasser sherif 20250854 + kareem adel madi 20253029
+// bonos filter 1 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
+// + Omar Yasser Sherif 20250854
 Image skew(Image &img, int factor) {
   Image image(img.width, img.height);
 
@@ -693,6 +694,7 @@ void skewingImage(Image &img) {
 }
 //***//***//***//***//***//***////***//***//***//***//***//***////***//***//***//***//***//***//
 // bonus Filter 2 Eslam Karim shawky 20250814 + Mohammed Kamal Gherbawi 20253019
+// + Omar Yasser Sherif 20250854
 
 int gray2(Image &img, int x, int y) {
   int r = img.getPixel(x, y, 0);
@@ -787,7 +789,7 @@ int getChoice() {
   if (cin.fail()) {
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << "Invalid input. Please enter a number between 1 and 9." << endl;
+    cout << "Invalid input. Please enter a number between 1 and 19." << endl;
     cin >> choice;
   }
   return choice;
@@ -804,8 +806,9 @@ int main() {
     if (choice == 19) {
       cout << "Exiting the program." << endl;
       break;
-    }
-
+    } else if (choice > 19)
+      cout << "Invalid input. Please enter a number between 1 and 19." << endl;
+    break;
     cout << "Please enter the image filename: ";
     cin >> filename;
     Image image(filename);
