@@ -8,7 +8,7 @@
 
 ## 👥 Team Members
 
-- Eslam karim (20250814)
+- Islam karim (20250814)
 - Omar Yasser (20250854)
 - Mohammed Gherbawi (20253019)
 - Kareem Adel (20253029)
