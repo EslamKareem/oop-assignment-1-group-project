@@ -806,12 +806,10 @@ int main() {
     ViewMenu();
     choice = getChoice();
 
-    if (choice == 19) {
+    if (choice >= 19) {
       cout << "Exiting the program." << endl;
       break;
-    } else if (choice > 19)
-      cout << "Invalid input. Please enter a number between 1 and 19." << endl;
-    break;
+    }
     cout << "Please enter the image filename: ";
     cin >> filename;
     Image image(filename);
