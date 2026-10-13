@@ -1,64 +1,104 @@
-#include "Image_Class.h"
 #include <iostream>
-#include <string>
+#include"Image_Class.h"
+#include<string>
 using namespace std;
-void addframe(Image &img) {
-  cout << "welcome to our application ";
-  int frameType;
-  cout << "Choose frame type:\n";
-  cout << "1. Simple frame || 2.Fancy frame\n";
-  cin >> frameType;
 
-  cout << " enter frame thickness and color \n ";
-  int frameWidth;
-  cin >> frameWidth;
+void addframe(Image &img)
+{
+cout<<"welcome to our frame adding function"<<endl;
+int frameType;
+cout<<"please choose frame type\n";
+cout<<"1.simple frame || 2. fancy frame"<<endl;
+cin>>frameType;
 
-  int framecolorR, framecolorG, framecolorB;
-  cout << " enter frame color in R G B , each value should be between 0 and "
-          "255\n";
-  cin >> framecolorR >> framecolorG >> framecolorB;
+cout<<"enter farme thickness and color\n";
+ int framethickness;
+cin>>framethickness;
 
-  int width = img.width;
-  int height = img.height;
+cout<<"enter color of frame in RGB each value should be between 0 and 255\n"; 
+int framecolorR,framecolorG,framecolorB;
+cin>>framecolorR>>framecolorG>>framecolorB;
 
-  for (int i = 0; i < height; ++i) {
+int width=img.width;
+int height=img.height;
 
-    for (int j = 0; j < width; ++j)
-      if (frameType == 1) {
-        if (i < frameWidth || i >= height - frameWidth || j < frameWidth ||
-            j >= width - frameWidth) {
-          img.setPixel(j, i, 0, framecolorR);
-          img.setPixel(j, i, 1, framecolorG);
-          img.setPixel(j, i, 2, framecolorB);
-        }
+for(int x=0; x<width; ++x)
+{
+
+
+ for(int y=0; y<height; ++y)
+ {
+   if(frameType==1)
+   {
+    if (x < framethickness || x >= width - framethickness || y < framethickness ||
+    y >= height - framethickness)
+    {
+      
+    img.setPixel(x,y,0,framecolorR);
+    img.setPixel(x,y,1,framecolorG);
+    img.setPixel(x,y,2,framecolorB);
+
+    }
+    
+   }
+  
+
+else if(frameType==2)
+   {
+    if (x < framethickness || x >= width - framethickness || y < framethickness ||
+    y >= height - framethickness)
+     {
+      
+    img.setPixel(x,y,0,framecolorR);
+    img.setPixel(x,y,1,framecolorG);
+    img.setPixel(x,y,2,framecolorB);
+
+    }
+    else
+    {
+     int gap=5, line=3;
+     int start=framethickness+gap;
+
+     if (x >= start && x < width - start && y >= start && y < height - start)
+     {
+      int dx = min(x - start, (width - start - 1) - x);
+      int dy = min(y - start, (height - start - 1) - y);
+
+      if (min(dx, dy) < line)
+      {
+       img.setPixel(x,y,0,255);
+       img.setPixel(x,y,1,255);
+       img.setPixel(x,y,2,255);
       }
+     }
+    }
+   }
+ }
+  
+    
 
-      else if (frameType == 2) {
-        if (i < frameWidth || i >= height - frameWidth || j < frameWidth ||
-            j >= width - frameWidth) {
-          img.setPixel(j, i, 0, framecolorR);
-          img.setPixel(j, i, 1, framecolorG);
-          img.setPixel(j, i, 2, framecolorB);
-        }
-      }
-  }
 
-  cout << "frame added successfully\n";
 }
-int main() {
-  string Picture;
-  cout << "Enter image filename to load ";
-  cin >> Picture;
 
-  Image img(Picture);
+   cout<<"frame added successfully"<<endl;
 
-  addframe(img);
 
-  string outputfilname;
-  cout << "Enter outputfilename to save";
+}
+int main() 
+{
+    string Picture;
+    cout << "Enter image filename to load ";
+    cin >> Picture;
 
-  cin >> outputfilname;
-  img.saveImage(outputfilname);
+    Image img(Picture);
 
-  return 0;
+    addframe(img);
+
+    string outputfilname;
+    cout << "Enter outputfilename to save";
+
+    cin >> outputfilname;
+    img.saveImage(outputfilname);
+
+    return 0;
 }
